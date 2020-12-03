@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap.js' %}">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container">
+
+        <ul class="nav navbar-nav">
+
+          <li><a class="navbar-brand" href="{% url 'index' %}">DJANGO</a></li>
+          <li><a class="navbar-brand" href="{% url 'admin:index' %}">Admin</a></li>
+          <li><a class="navbar-brand" href="{% url 'basic_app:register' %}">Register</a></li>
+          <!-- <li><a class="navbar-brand" href="{% url 'basic_app:login' %}">Login</a></li> -->
+
+
+          {% if user.is_authenticated %}
+            <li><a class="navbar-brand" href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'basic_app:login' %}">Login</a></li>
+          {% endif %}
+
+        </ul>
+
+      </div>
+    </nav>
+
+    {% block body_block %}
+
+
+    {% endblock %}
+
+
+  </body>
+</html>
